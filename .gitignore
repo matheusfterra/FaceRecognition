@@ -1,0 +1,11 @@
+/[Ll]ib/
+/[Ss]cripts/
+__pycache__ 
+pyvenv.cfg
+/[Ee]tc/
+/[Ss]hare/
+/.idea/
+/dataset/
+/known_faces/
+/trainer/
+/unknown_faces/
