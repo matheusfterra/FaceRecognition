@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 import os 
+from READ_JSON import get_users
+
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read('trainer/trainer.yml')
@@ -13,7 +15,8 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 id = 0
 
 # names related to ids: example ==> Marcelo: id=1,  etc
-names = ['None', 'Matheus', 'Paula', 'Ilza', 'Z', 'W'] 
+ids,names = get_users() 
+
 
 # Initialize and start realtime video capture
 cam = cv2.VideoCapture(0)
@@ -40,9 +43,12 @@ while True:
         cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 2)
         id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
 
+        index = ids.index(id)
+        face_name=names[index]
+
         # Check if confidence is less them 100 ==> "0" is match 
         if (confidence < 100):
-            id = names[id]
+            id = face_name
             confidence = "  {0}%".format(round(100 - confidence))
         else:
             id = "unknown"

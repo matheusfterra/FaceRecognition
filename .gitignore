@@ -9,3 +9,4 @@ pyvenv.cfg
 /known_faces/
 /trainer/
 /unknown_faces/
+SaveJson.txt
